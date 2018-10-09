@@ -1,0 +1,65 @@
+{% extends "base_tmp.html" %}
+
+{% block content %}
+
+<!--内容-->
+<div class="container" style="margin-top:76px">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>{{user.username}}的购物车清单</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-9">
+                    <table class="table" style="border: 1px;">
+                        <thead>
+                        <tr>
+                            <th class="yellow header">名称</th>
+                            <th class="header">数量</th>
+                            <th class="blue header">单价</th>
+                            <th class="green header">小计</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in product_list %}
+                        <tr>
+                            <td>{{item.product.a_title}}</td>
+                             <th>{{item.quantity}}</th>
+                            <td>{{item.unit_price}}</td>
+                            <td>{% widthratio item.quantity 1 item.unit_price %}</td>
+
+                        </tr>
+                        {% endfor %}
+                        <tr style="color: green">
+                            <th></th>
+                            <td></td>
+                            <th>总计：</th>
+                            <th>{{total_price}}</th>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+
+                    <div class="col-md-3">
+                    <p>
+                        <a class="btn  btn-primary"  type="button" href="/art/index">继续购物</a>
+                    </p>
+
+                    <p><br>
+                        <a class="btn  btn-danger" type="button" href="/art/cart/clean">清空购物车</a></p>
+                    <p><br>
+                        <a class="btn  btn-success" href="/art/cart/order">商品结算</a></p>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
